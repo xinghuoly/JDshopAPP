@@ -20,15 +20,7 @@
     </van-search>
     <!-- 订单内容 -->
     <!-- 订单tabs选项卡 -->
-    <van-tabs
-      v-model="active"
-      sticky
-      :offset-top="46"
-      ellipsis
-      swipeable
-      lazy-render
-      @change="getList"
-    >
+    <van-tabs v-model="active" ellipsis swipeable lazy-render @change="getList">
       <!-- 全部订单 -->
       <van-tab v-for="(val, i) in tabsList" :key="i" :title="val.title">
         <van-panel

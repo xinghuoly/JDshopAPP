@@ -42,43 +42,6 @@ module.exports = {
         pathRewrite: {
           "^/api": "/"
         }
-      },
-      "/myapi": {
-        target: "http://api.7-orange.cn:7300/mock/5def6a2d448e330a1116366e/api",
-        changeOrigin: true,
-        ws: true, // proxy websockets
-        pathRewrite: {
-          "^/myapi": "/"
-        }
-      },
-      // 首页九宫格分类
-      "/spfenlei": {
-        target:
-          "https://www.fastmock.site/mock/474c85cfc60487e74223dd753e5bcf8d/home/msiteclassify",
-        changeOrigin: true,
-        ws: true, // proxy websockets
-        pathRewrite: {
-          "^/spfenlei": "/"
-        }
-      },
-      // 首页轮播图
-      "/shopBan": {
-        target:
-          "https://www.fastmock.site/mock/474c85cfc60487e74223dd753e5bcf8d/home/banner",
-        changeOrigin: true,
-        ws: true, // proxy websockets
-        pathRewrite: {
-          "^/shopBan": "/"
-        }
-      },
-      "/recommData": {
-        target:
-          "https://www.fastmock.site/mock/e4532ccf10709279714bcb698640920a/mall/recommend",
-        changeOrigin: true,
-        ws: true, // proxy websockets
-        pathRewrite: {
-          "^/recommData": "/"
-        }
       }
     }
   },

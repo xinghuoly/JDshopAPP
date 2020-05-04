@@ -3,7 +3,9 @@
     <!-- 头部导航 -->
     <headerBar></headerBar>
     <!-- 轮播图 -->
-    <div class="slider-bg"></div>
+    <div class="bg-wrap">
+      <div class="slider-bg"></div>
+    </div>
     <Swiper :images="swiperImgs" :autoplay="3000"></Swiper>
     <!-- 九宫格分类 -->
     <van-swipe class="fenleiSlider" indicator-color="#e93b3d" :loop="false">
@@ -276,16 +278,21 @@ export default {
   methods: {
     // 轮播图请求接口地址
     getSwiperImgs() {
-      this.axios.get("/shopBan").then(res => {
-        // console.log(res);
-        this.swiperImgs = res.data;
-      });
+      this.axios
+        .get(
+          "https://www.fastmock.site/mock/474c85cfc60487e74223dd753e5bcf8d/home/banner"
+        )
+        .then(res => {
+          // console.log(res);
+          this.swiperImgs = res.data;
+        });
     },
     // 分类九宫格请求
     getFlList() {
       this.axios({
         method: "get",
-        url: "/spfenlei"
+        url:
+          "https://www.fastmock.site/mock/474c85cfc60487e74223dd753e5bcf8d/home/msiteclassify"
       }).then(res => {
         // console.log(res);
         if (res.status == 200) {
@@ -354,23 +361,30 @@ export default {
   width: 100%;
   box-sizing: border-box;
   margin-bottom: 60px;
-  .slider-bg {
-    background-image: linear-gradient(0deg, #f1503b, #c82519 50%);
+  .bg-wrap {
+    width: 100%;
+    height: 100px;
     position: absolute;
-    top: 0;
-    left: -25%;
-    height: 145px;
-    width: 150%;
-    border-bottom-left-radius: 100%;
-    border-bottom-right-radius: 100%;
+    overflow: hidden;
+    .slider-bg {
+      background-image: linear-gradient(0deg, #f1503b, #c82519 50%);
+      position: absolute;
+      overflow: hidden;
+      top: 0;
+      left: -25%;
+      height: 100px;
+      width: 150%;
+      border-bottom-left-radius: 100%;
+      border-bottom-right-radius: 100%;
+    }
   }
   .fenleiSlider {
     height: 162px;
     background-color: transparent;
     .van-swipe__track {
-      height: 148px;
+      height: 100%;
       .fl-item {
-        height: 148px;
+        height: 100%;
         .van-grid {
           height: 100%;
         }
@@ -486,14 +500,15 @@ export default {
     box-sizing: border-box;
     .wraper {
       height: 120px;
+      margin: 10px;
       .imgBtn-item {
-        width: 178px;
+        width: 100%;
         height: 120px;
         border-radius: 8px;
         position: relative;
-        margin: 10px;
         display: flex;
         img {
+          width: 50%;
           flex: 1;
           &:first-child {
             border-radius: 8px 0 0 8px;

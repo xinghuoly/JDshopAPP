@@ -201,10 +201,10 @@ export default {
       // 获取验证码
       let res = await this.axios({
         method: "get",
-        url: "/myapi/send_code",
+        url:
+          "https://www.fastmock.site/mock/d740fc2fd5f677d40dcfabc7b78132d4/api/verifycode",
         params: {
-          phoneNumber: this.uname,
-          "Geek-James": this.randomCode
+          phoneNumber: this.uname
         }
       });
       // console.log(res);
@@ -226,24 +226,29 @@ export default {
       if (!this.isDisabled) {
         let res = await this.axios({
           method: "post",
-          url: "/myapi/login_code",
+          url:
+            "https://www.fastmock.site/mock/d740fc2fd5f677d40dcfabc7b78132d4/api/register",
           data: {
-            userName: this.uname,
-            pwd: this.upwd,
-            captcha: this.veriResult
+            username: this.uname,
+            password: this.upwd,
+            veri: this.veriResult
           }
         });
-        console.log(res);
-        this.setUserToken(res.data.data.token);
-        this.setMyIsLogin(true);
-        if (this.$route.params.to) {
-          //如果存在参数
-          this.$router.push(this.$route.params.to); //则跳转至进入登录页前的路由
+        // console.log(res);
+        if (res.data.data.token !== null) {
+          this.setUserToken(res.data.data.token);
+          this.setMyIsLogin(true);
+          if (this.$route.params.to) {
+            //如果存在参数
+            this.$router.push(this.$route.params.to); //则跳转至进入登录页前的路由
+          } else {
+            this.$router.push("/mine"); //否则跳转至我的页面
+            this.$store.dispatch("setMyIsLogin", true);
+          }
+          this.$toast.success("登录成功");
         } else {
-          this.$router.push("/mine"); //否则跳转至我的页面
-          this.$store.dispatch("setMyIsLogin", true);
+          this.$toast.success("登录失败");
         }
-        this.$toast.success("登录成功");
       }
     }
   },
@@ -262,8 +267,9 @@ export default {
 <style lang="less" scoped>
 .register {
   width: 100%;
-  height: 100%;
+  overflow: hidden;
   box-sizing: border-box;
+  padding-bottom: 0;
   padding: 25px;
   background-color: #fff;
   .reg-face {
@@ -286,7 +292,7 @@ export default {
     .van-cell-group {
       padding: 0 8px;
       .van-field {
-        margin-bottom: 18px;
+        margin-bottom: 15px;
         border-bottom: 2px solid #d3dfef;
         &:nth-of-type(3) {
           margin-bottom: 6px;
@@ -322,7 +328,7 @@ export default {
     width: 100%;
     height: 50px;
     display: flex;
-    margin-top: 28px;
+    margin-top: 25px;
     justify-content: space-between;
     align-items: center;
     .submit-btn {
@@ -338,7 +344,7 @@ export default {
     }
   }
   .protocol {
-    margin-top: 20px;
+    margin-top: 15px;
     text-align: center;
     color: #666875;
     .user-protocol {
