@@ -37,7 +37,7 @@
     "lib-flexible": "^0.3.2",
     "postcss-pxtorem": "^5.1.1",
     "prettier": "^1.19.1",
-    "qs": "^6.9.3",
+    "qs": "^6.9.7",
     "vue-template-compiler": "^2.6.11"
   },
   "eslintConfig": {
